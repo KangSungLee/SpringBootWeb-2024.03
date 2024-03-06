@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Alert Message</title>
+	<!-- <script>
+		window.onload = function() {
+			let msg = getParameterByName('msg');
+        	let url = getParameterByName('url');
+        	alert(msg);
+        	location.href = url;
+		}
+	</script> -->
+</head>
+<body>
+	<script th:inline="javascript">
+        let msg = /*[[${msg}]]*/ '';
+        let url = /*[[${url}]]*/ '';
+        alert(msg);
+        location.href = url;
+    </script>
+	<!-- <input th:value="${msg}" type="hidden" id="msg">
+	<input th:value="${url}" type="hidden" id="url"> -->
+</body>
+</html>

@@ -1,18 +1,19 @@
 package com.example.sb.exercise;
 
-
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
-
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/ex")
@@ -69,4 +70,29 @@ public class BasicController {
 		return "exercise/params";
 	}
 	
+	@GetMapping("/login")
+	public String login() {
+		return "exercise/login";
+	}
+	
+	@PostMapping("/login")
+	public String loginProc(String uid, String pwd, HttpSession session, Model model) {
+		String hashedPwd = "$2a$10$7xpDk1gkUVpvqNNbdgVhH.5VKxiWNLusIn0i6fYeWHwizmOVB4fzG";
+		if (uid.equals("james") && BCrypt.checkpw(pwd, hashedPwd)) {
+			model.addAttribute("msg", uid + "님이 로그인했습니다.");
+			session.setAttribute("sessUid", uid);
+			session.setAttribute("sessUname", "제임스");			
+			return "exercise/loginResult";
+		} else {
+			model.addAttribute("msg", "uid, 비밀번호를 확인하세요.");
+			return "exercise/loginResult";
+		}
+	}
+	
+	@ResponseBody
+	@GetMapping(value={"/path/{uid}/{bid}", "/path/{uid}"})
+	public String path(@PathVariable String uid, @PathVariable(required = false) Integer bid) {
+		bid = (bid == null) ? 0 : bid;
+		return "<h1>uid=" + uid + ", bid=" +  bid + "</h1>";
+	}
 }

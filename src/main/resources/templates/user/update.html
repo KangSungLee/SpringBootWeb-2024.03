@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/sb/user/update" method="post">
+        <input type="hidden" name="uid" th:value="${user.uid}">
+        <input type="hidden" name="hashedPwd" th:value="${user.pwd}">
+        <table class="table table-borderless">
+            <tr>
+                <td style="width: 40%;"><label class="col-form-label">사용자 ID</label></td>
+                <td style="width: 60%;"><input type="text" class="form-control" th:value="${user.uid}" disabled></td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label">패스워드</label></td>
+                <td><input type="password" name="pwd" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label">패스워드 확인</label></td>
+                <td><input type="password" name="pwd2" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label">사용자 이름</label></td>
+                <td><input type="text" name="uname" class="form-control" th:value="${user.uname}"></td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label">이메일</label></td>
+                <td><input type="text" name="email" class="form-control" th:value="${user.email}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-primary" type="submit">확인</button>
+                    <button class="btn btn-secondary" type="reset">취소</button>
+                </td>
+            </tr>							
+        </table>
+    </form>
+</body>
+</html>

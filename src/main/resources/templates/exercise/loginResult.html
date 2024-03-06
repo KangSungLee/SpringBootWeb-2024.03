@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Params</title>
+</head>
+<body style="margin: 50px;">
+    <h1>로그인 결과</h1>
+    <hr>
+    <h2><span th:text="${msg}">메세지</span></h2>
+    <h2><span th:text="${session.sessUname}">사용자 이름</span>님 환영합니다.</h2>
+</body>
+</html>
