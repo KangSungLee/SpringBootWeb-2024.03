@@ -11,6 +11,7 @@
 <body style="margin: 50px;">
     <h1>사용자 목록</h1>
     <hr>
+    <div th:text="${sessUid}"></div>
     <table border="1">
         <tr>
             <th>No.</th>
@@ -28,8 +29,8 @@
             <td th:text="${user.regDate}">2024-03-06</td>
             <td>
 				<a th:href="@{'/user/update/' + ${user.uid}}">수정</a>
-				<a th:href="@{/user/update/{uid}(uid=${user.uid})}">수정2</a>
-			    <a th:href="@{/user/delete/{uid}(uid=${user.uid})}">삭제</a>
+				<a th:href="@{/user/update/{x}(x=${user.uid})}">수정2</a>
+			    <a th:href="@{/user/delete/{x}(x=${user.uid})}">삭제</a>
 			</td>
 			
         </tr>
